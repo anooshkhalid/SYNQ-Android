@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/selectedOverlay"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@color/colorPrimary"
+        android:alpha="100"
+        android:visibility="invisible" />
+
+
+</FrameLayout>
