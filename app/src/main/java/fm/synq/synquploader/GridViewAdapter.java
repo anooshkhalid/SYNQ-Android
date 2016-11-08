@@ -3,6 +3,7 @@ package fm.synq.synquploader;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,14 @@ public class GridViewAdapter extends BaseAdapter {
         this.videos = data;
         this.gridView = view;
     }
+
+
+    public void updateData(ArrayList<Video> videosArray) {
+        // Update the adapter´s dataset
+        this.videos = videosArray;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getCount() {
@@ -69,6 +78,11 @@ public class GridViewAdapter extends BaseAdapter {
         // Check that video thumbnail path is set (to avoid a crash)
         if (video.getVideoThumbnailPath() != null) {
             holder.image.setImageURI(Uri.parse(video.getVideoThumbnailPath()));
+            Log.e("f", "thumbnnail path: " + video.getVideoThumbnailPath());
+            Log.e("f", "file path  : " + video.getVideoFilePath());
+        }
+        else {
+            Log.e("f", "thumbnail path NULL");
         }
 
 

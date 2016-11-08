@@ -5,8 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by kjartanvestvik on 07.11.2016.
@@ -35,15 +37,12 @@ public class VideoHandler {
                     (MediaStore.Video.Media._ID);
             int filePath = videoCursor.getColumnIndex
                     (MediaStore.Video.Media.DATA);
-            int dateTakenColumn = videoCursor.getColumnIndex
-                    (MediaStore.Video.Media.DATE_TAKEN);
 
             do {
-                //long thisId = videoCursor.getLong(idColumn);
+                long thisId = videoCursor.getLong(idColumn);
                 String thisFile = videoCursor.getString(filePath);
-                String thisThumbPath = videoCursor.getString(videoCursor.getColumnIndex(MediaStore.Video.Thumbnails.DATA));
 
-                Video thisVideo = new Video(thisFile, thisThumbPath);
+                Video thisVideo = new Video(thisId, thisFile);
                 localVideos.add(thisVideo);
             }
             while (videoCursor.moveToNext());

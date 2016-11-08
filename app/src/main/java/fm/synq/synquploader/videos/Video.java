@@ -6,12 +6,18 @@ package fm.synq.synquploader.videos;
 
 public class Video {
 
+    private long fileId;
     private String videoFilePath;
     private String videoThumbnailPath;
 
-    public Video(String filePath, String thumbnailPath) {
+    public Video(long fileId, String filePath) {
+        this.fileId = fileId;
         this.videoFilePath = filePath;
-        this.videoThumbnailPath = thumbnailPath;
+    }
+
+
+    public long getFileId() {
+        return this.fileId;
     }
 
     public String getVideoFilePath() {
@@ -20,5 +26,9 @@ public class Video {
 
     public String getVideoThumbnailPath() {
         return this.videoThumbnailPath;
+    }
+
+    public void setVideoThumbnailPath(String path) {
+        this.videoThumbnailPath = path;
     }
 }
