@@ -50,7 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
                 //gridAdapter.notifyDataSetChanged();
 
-                // Upload video:
+                // Synq API:
+                // - Create video object, video/create
+                // - Get upload params, video/upload
+
+                // SynqUploader:
+                // - Upload video to AWS, using parameters returned from video/upload
+
 
 
             }
