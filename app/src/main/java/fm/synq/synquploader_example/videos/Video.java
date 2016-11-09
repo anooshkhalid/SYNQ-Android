@@ -1,4 +1,4 @@
-package fm.synq.synquploader.videos;
+package fm.synq.synquploader_example.videos;
 
 /**
  * Created by kjartanvestvik on 07.11.2016.

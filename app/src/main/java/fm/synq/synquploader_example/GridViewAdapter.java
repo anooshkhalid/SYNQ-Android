@@ -1,4 +1,4 @@
-package fm.synq.synquploader;
+package fm.synq.synquploader_example;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-import fm.synq.synquploader.videos.Video;
+import fm.synq.synquploader_example.videos.Video;
 
 /**
  * Created by kjartanvestvik on 07.11.2016.

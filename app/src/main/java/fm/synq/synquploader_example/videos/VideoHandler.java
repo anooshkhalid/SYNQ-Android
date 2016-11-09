@@ -1,14 +1,12 @@
-package fm.synq.synquploader.videos;
+package fm.synq.synquploader_example.videos;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by kjartanvestvik on 07.11.2016.

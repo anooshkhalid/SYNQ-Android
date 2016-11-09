@@ -1,8 +1,7 @@
-package fm.synq.synquploader;
+package fm.synq.synquploader_example;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.MediaStore;
@@ -17,11 +16,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-import fm.synq.synquploader.videos.Video;
-import fm.synq.synquploader.videos.VideoHandler;
+import fm.synq.synquploader_example.videos.Video;
+import fm.synq.synquploader_example.videos.VideoHandler;
 
 public class MainActivity extends AppCompatActivity {
 

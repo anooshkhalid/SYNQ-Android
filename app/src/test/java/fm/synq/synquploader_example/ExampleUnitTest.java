@@ -1,4 +1,4 @@
-package fm.synq.synquploader;
+package fm.synq.synquploader_example;
 
 import org.junit.Test;
 
