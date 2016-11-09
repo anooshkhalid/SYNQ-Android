@@ -15,8 +15,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import java.util.ArrayList;
+import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+import fm.synq.synquploader_example.SynqAPI.SynqAPI;
+import fm.synq.synquploader_example.SynqAPI.SynqResponseHandler;
 import fm.synq.synquploader_example.videos.Video;
 import fm.synq.synquploader_example.videos.VideoHandler;
 
@@ -25,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private GridViewAdapter gridAdapter;
     private ArrayList<Video> videos;
     static int MY_PERMISSIONS_REQUEST_READ_STORAGE = 1;
+    SynqAPI synqAPI;
 
 
     @Override
@@ -43,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Video video = (Video) parent.getItemAtPosition(position);
+                Log.e("f", "VID");
 
-                //gridAdapter.notifyDataSetChanged();
+                final Video video = (Video) parent.getItemAtPosition(position);
 
                 // Synq API:
-                // - Create video object, video/create
+                // Step 1 - Create video object:
+                apiCreateVideo(video);
+
                 // - Get upload params, video/upload
 
                 // SynqUploader:
@@ -58,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Init SynqAPI
+        synqAPI = new SynqAPI();
 
         // Check permissions. If permissions not granted, request them and wait with accessing videos until request returns
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -82,6 +97,61 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    private void apiCreateVideo(final Video aVideo) {
+
+        synqAPI.video_create(new SynqResponseHandler()
+        {
+            @Override
+            public void onSuccess(JsonObject jsonResponse) {
+
+
+                Log.e("f", "video create response: " + jsonResponse);
+                String vidId = jsonResponse.get("video_id").getAsString();
+                Log.e("f", "video_id: " + vidId);
+
+                // Set videoID in video object
+                aVideo.setApiVideoId(vidId);
+
+                // Step 2 - get upload params:
+                apiGetUploadParameters(aVideo);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("f", "onFailure");
+
+            }
+        }, MainActivity.this);
+    }
+
+
+    private void apiGetUploadParameters(final Video aVideo) {
+
+        synqAPI.video_upload(new SynqResponseHandler()
+        {
+            @Override
+            public void onSuccess(JsonObject jsonResponse) {
+
+                Log.e("f", "video upload response: " + jsonResponse);
+
+
+                // Set uploadParams in video object
+                //aVideo.setApiVideoId(vidId);
+
+                // Step 3 - upload the video file:
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("f", "onFailure");
+
+            }
+        }, MainActivity.this, aVideo.getApiVideoId());
+    }
+
 
 
     //

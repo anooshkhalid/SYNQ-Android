@@ -78,8 +78,6 @@ public class GridViewAdapter extends BaseAdapter {
         // Check that video thumbnail path is set (to avoid a crash)
         if (video.getVideoThumbnailPath() != null) {
             holder.image.setImageURI(Uri.parse(video.getVideoThumbnailPath()));
-            Log.e("f", "thumbnnail path: " + video.getVideoThumbnailPath());
-            Log.e("f", "file path  : " + video.getVideoFilePath());
         }
         else {
             Log.e("f", "thumbnail path NULL");
