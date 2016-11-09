@@ -28,4 +28,5 @@ dependencies {
     compile 'com.koushikdutta.ion:ion:2.1.8'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.0.0'
+    compile project(path: ':synquploader')
 }

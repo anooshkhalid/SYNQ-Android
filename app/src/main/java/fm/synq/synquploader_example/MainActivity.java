@@ -17,13 +17,9 @@ import android.widget.GridView;
 
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
+import fm.synq.synquploader.SynqUploader;
 import fm.synq.synquploader_example.SynqAPI.SynqAPI;
 import fm.synq.synquploader_example.SynqAPI.SynqResponseHandler;
 import fm.synq.synquploader_example.videos.Video;
@@ -35,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Video> videos;
     static int MY_PERMISSIONS_REQUEST_READ_STORAGE = 1;
     SynqAPI synqAPI;
-
+    SynqUploader synqUploader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
