@@ -7,7 +7,8 @@ The library uses [Ion](https://github.com/koush/ion) for communicating with the 
 
 ## Example
 
-The example project is not implemented yet. It will be added in a later version.
+An example app is included in this repo. The app will show a grid view with thumbnails of all the videos on your device. Clicking on a thumbnail will call the upload function and upload the video. Clone the repo to explore the example app.
+Important note: The example project is dependant on access to the SYNQ API to be able to create a video object and to fetch the upload parameters needed when calling the upload function. You will need to get an API key from the SYNQ admin panel, and insert the key into the SynqAPI class. Caution: this is not the proper way of doing this, and your api key might get exposed to others! In a real world scenario, this should be handled by your own backend. The backend should then give your app the upload parameters.
 
 ## Installation
 
