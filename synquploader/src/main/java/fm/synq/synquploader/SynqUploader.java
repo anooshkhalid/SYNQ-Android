@@ -1,12 +1,10 @@
 package fm.synq.synquploader;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.async.http.body.StringBody;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.ProgressCallback;
 
@@ -45,6 +43,17 @@ public class SynqUploader {
         String awsParamAcl = context.getResources().getString(R.string.AwsParamAcl);
         String awsParamKey = context.getResources().getString(R.string.AwsParamKey);
 
+        // Check if some of the parameters are missing, to prevent crash
+        if (jsonObject.get(awsParamAccessKeyId) == null ||
+                jsonObject.get(awsParamContentType) == null ||
+                jsonObject.get(awsParamPolicy) == null ||
+                jsonObject.get(awsParamSignature) == null ||
+                jsonObject.get(awsParamAcl) == null ||
+                jsonObject.get(awsParamKey) == null) {
+            Log.e("f", "Error, missing AWS parameter");
+            return;
+        }
+
         Ion.with(context)
                 .load("POST", jsonObject.get("action").getAsString())
                 .uploadProgressHandler(new ProgressCallback() {
@@ -58,13 +67,25 @@ public class SynqUploader {
                 .setMultipartParameter(awsParamPolicy, jsonObject.get(awsParamPolicy).getAsString())
                 .setMultipartParameter(awsParamSignature, jsonObject.get(awsParamSignature).getAsString())
                 .setMultipartParameter(awsParamAcl, jsonObject.get(awsParamAcl).getAsString())
-                .setMultipartParameter(awsParamKey, jsonObject.get(awsParamKey).getAsString())
+                .setMultipartParameter(awsParamKey, "hest")
                 .setMultipartFile("file", videoFile)
                 .asString()
                 .setCallback(new FutureCallback<String>() {
                     @Override
                     public void onCompleted(Exception e, String result) {
-                        callback.onCompleted(e, result);
+
+                        if(e != null){
+                            Log.e("f", "Exception: " + e);
+                            callback.onFailure(e.toString());
+                        }
+                        else if(result != null && result.length() > 0) {
+                            // An error occured
+                            callback.onFailure(result);
+                        }
+                        else {
+                            // Upload success
+                            callback.onCompleted();
+                        }
                     }
                 });
     }

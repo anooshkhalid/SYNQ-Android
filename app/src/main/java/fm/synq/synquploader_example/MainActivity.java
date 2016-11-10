@@ -156,8 +156,13 @@ public class MainActivity extends AppCompatActivity {
         // Step 3 - upload the video file:
         synqUploader.uploadFile(videoFile, jsonObject, MainActivity.this, new SynqUploadHandler() {
             @Override
-            public void onCompleted(Exception e, String result) {
+            public void onCompleted() {
                 Log.e("f", "Upload complete!");
+            }
+
+            @Override
+            public void onFailure(String error) {
+                Log.e("f", "MainA, error: " + error);
             }
 
             @Override
