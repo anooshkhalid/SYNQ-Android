@@ -47,17 +47,19 @@ uploader.uploadFile(videoFile, jsonObject, context,
 		@Override
         	public void onCompleted() {
         		// Upload success
+
         	}
 		@Override
-            	public void onFailure(String error) {
-                	Log.e("f", "MainA, error: " + error);
-            	}
+    	  	public void onFailure(String error) {
+   	    		// Handle error
+
+		}
 
             	@Override
-            	public void onProgress(long bytesTransferred, long totalSize) {
-                	double percent = (double)bytesTransferred / (double)totalSize * 100.0;
-                	Log.e("f", "Upload progress " + (int)percent + " %");
+   	    	public void onProgress(long bytesTransferred, long totalSize) {
+	        	double percent = (double)bytesTransferred / (double)totalSize * 100.0;
+       			Log.e("f", "Upload progress " + (int)percent + " %");
 			// Report upload progress to UI
-            	}
+		}
     });
 ```
