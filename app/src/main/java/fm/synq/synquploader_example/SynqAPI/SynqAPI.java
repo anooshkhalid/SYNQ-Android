@@ -43,15 +43,13 @@ public class SynqAPI {
                 .setCallback(new FutureCallback<Response<JsonObject>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
-                        //Log.e("f", "Response: " + result);
-                        Log.e("f", "Res: " + result.getHeaders().message());
+                        //Log.e("f", "Res: " + result.getHeaders().message());
 
                         if(e != null){
                             handler.onFailure(e);
                         }
                         else if(result.getHeaders().code() == 400){
                             // a HTTP 400 was returned -- extract error
-
                             handler.onError(result.getResult().get("name").getAsString(), result.getResult().get("message").getAsString());
                         }
                         else {

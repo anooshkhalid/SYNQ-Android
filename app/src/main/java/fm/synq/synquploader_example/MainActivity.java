@@ -17,8 +17,10 @@ import android.widget.GridView;
 
 import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import fm.synq.synquploader.SynqUploadHandler;
 import fm.synq.synquploader.SynqUploader;
 import fm.synq.synquploader_example.SynqAPI.SynqAPI;
 import fm.synq.synquploader_example.SynqAPI.SynqResponseHandler;
@@ -67,8 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Init SynqAPI
+        // Init SynqAPI and synqUploader
         synqAPI = new SynqAPI();
+        synqUploader = new SynqUploader();
+
 
         // Check permissions. If permissions not granted, request them and wait with accessing videos until request returns
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(JsonObject jsonResponse) {
 
 
-                Log.e("f", "video create response: " + jsonResponse);
+                //Log.e("f", "video create response: " + jsonResponse);
                 String vidId = jsonResponse.get("video_id").getAsString();
                 Log.e("f", "video_id: " + vidId);
 
@@ -130,14 +134,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
 
-                Log.e("f", "video upload response: " + jsonResponse);
+                //Log.e("f", "video upload response: " + jsonResponse);
 
+                // Create a File from the video path
+                File videoFile = new File(aVideo.getVideoFilePath());
 
-                // Set uploadParams in video object
-                //aVideo.setApiVideoId(vidId);
-
-                // Step 3 - upload the video file:
-
+                uploadVideoFile(videoFile, jsonResponse);
             }
 
             @Override
@@ -148,6 +150,23 @@ public class MainActivity extends AppCompatActivity {
         }, MainActivity.this, aVideo.getApiVideoId());
     }
 
+
+    private void uploadVideoFile(File videoFile, JsonObject jsonObject) {
+
+        // Step 3 - upload the video file:
+        synqUploader.uploadFile(videoFile, jsonObject, MainActivity.this, new SynqUploadHandler() {
+            @Override
+            public void onCompleted(Exception e, String result) {
+                Log.e("f", "Upload complete!");
+            }
+
+            @Override
+            public void onProgress(long bytesTransferred, long totalSize) {
+                double percent = (double)bytesTransferred / (double)totalSize * 100.0;
+                Log.e("f", "Upload progress " + (int)percent + " %");
+            }
+        });
+    }
 
 
     //

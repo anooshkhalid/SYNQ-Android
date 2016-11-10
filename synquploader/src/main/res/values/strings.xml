@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Synq Uploader</string>
+
+    <string name="AwsParamAccessKeyId">AWSAccessKeyId</string>
+    <string name="AwsParamContentType">Content-Type</string>
+    <string name="AwsParamPolicy">Policy</string>
+    <string name="AwsParamSignature">Signature</string>
+    <string name="AwsParamAcl">acl</string>
+    <string name="AwsParamKey">key</string>
 </resources>
