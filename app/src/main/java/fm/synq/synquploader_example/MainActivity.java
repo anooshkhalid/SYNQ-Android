@@ -157,18 +157,22 @@ public class MainActivity extends AppCompatActivity {
         synqUploader.uploadFile(videoFile, jsonObject, MainActivity.this, new SynqUploadHandler() {
             @Override
             public void onCompleted() {
-                Log.e("f", "Upload complete!");
+                // Upload success
+
             }
 
             @Override
             public void onFailure(String error) {
-                Log.e("f", "MainA, error: " + error);
+                // Handle error
+
             }
 
             @Override
             public void onProgress(long bytesTransferred, long totalSize) {
                 double percent = (double)bytesTransferred / (double)totalSize * 100.0;
-                Log.e("f", "Upload progress " + (int)percent + " %");
+                //Log.e("f", "Upload progress " + (int)percent + " %");
+                // Report upload progress to UI
+
             }
         });
     }

@@ -19,7 +19,7 @@ import org.json.JSONTokener;
 public class SynqAPI {
 
     private static final String BASE_URL = "http://api.staging.synq.fm/v1/";
-    private static final String API_KEY = "210515fb2dc04bf48cd97a722505b0e5";
+    private static final String API_KEY = ""; // Add your SYNQ API key here!
 
     public SynqAPI() {
 
