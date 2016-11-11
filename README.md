@@ -15,7 +15,7 @@ Important note: The example project is dependant on access to the SYNQ API to be
 SynqUploader can be integrated into your project by adding the following dependency to your app's build.gradle: 
 
 ```java
-compile 'fm.synq:synquploader:0.0.1'
+compile 'fm.synq:synquploader:0.0.2'
 ```
 
 ## Getting started
