@@ -158,13 +158,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCompleted() {
                 // Upload success
-
+                //Log.e("f", "Upload success");
             }
 
             @Override
             public void onFailure(String error) {
                 // Handle error
-
+                //Log.e("f", "Upload error");
             }
 
             @Override
