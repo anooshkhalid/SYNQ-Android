@@ -67,7 +67,7 @@ public class SynqUploader {
                 .setMultipartParameter(awsParamPolicy, jsonObject.get(awsParamPolicy).getAsString())
                 .setMultipartParameter(awsParamSignature, jsonObject.get(awsParamSignature).getAsString())
                 .setMultipartParameter(awsParamAcl, jsonObject.get(awsParamAcl).getAsString())
-                .setMultipartParameter(awsParamKey, "hest")
+                .setMultipartParameter(awsParamKey, jsonObject.get(awsParamKey).getAsString())
                 .setMultipartFile("file", videoFile)
                 .asString()
                 .setCallback(new FutureCallback<String>() {
