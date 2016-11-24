@@ -12,7 +12,7 @@ install {
 
                 name 'synquploader' // YOUR LIBRARY NAME
                 description 'A library for uploading video files to the Synq platform' // YOUR LIBRARY DESCRIPTION
-                url 'https://bitbucket.org/synqfm/synquploader-android' // YOUR SITE
+                url 'https://github.com/SYNQfm/synquploader-android' // YOUR SITE
 
                 licenses {
                     license {
@@ -28,9 +28,9 @@ install {
                     }
                 }
                 scm {
-                    connection 'https://bitbucket.org/synqfm/synquploader-android.git' // YOUR GIT REPO
-                    developerConnection 'https://bitbucket.org/synqfm/synquploader-android.git' // YOUR GIT REPO
-                    url 'https://bitbucket.org/synqfm/synquploader-android' // YOUR SITE
+                    connection 'https://github.com/SYNQfm/synquploader-android.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/SYNQfm/synquploader-android.git' // YOUR GIT REPO
+                    url 'https://github.com/SYNQfm/synquploader-android' // YOUR SITE
                 }
             }
         }

@@ -35,8 +35,8 @@ bintray {
         name = 'synquploader' //YOUR PACKAGE NAME
         userOrg = 'synq'
         desc = 'A library for uploading video files to the Synq platform' // YOUR LIBRARY DESCRIPTION
-        websiteUrl = 'https://bitbucket.org/synqfm/synquploader-android' // YOUR SITE
-        vcsUrl = 'https://bitbucket.org/synqfm/synquploader-android.git' // YOUR GIT REPO
+        websiteUrl = 'https://github.com/SYNQfm/synquploader-android' // YOUR SITE
+        vcsUrl = 'https://github.com/SYNQfm/synquploader-android.git' // YOUR GIT REPO
         licenses = ["Apache-2.0"] // A LIST OF YOUR LICENCES
         publish = true
         publicDownloadNumbers = true
