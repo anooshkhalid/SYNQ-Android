@@ -1,1 +1,1 @@
-include ':app', ':synquploader'
+include ':app', ':synquploader', ':synqhttplib'
