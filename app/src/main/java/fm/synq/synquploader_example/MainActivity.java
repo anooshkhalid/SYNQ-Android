@@ -21,10 +21,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 import fm.synq.synqhttplib.SynqHttpClient;
+import fm.synq.synqhttplib.SynqResponseHandler;
 import fm.synq.synquploader.SynqUploadHandler;
 import fm.synq.synquploader.SynqUploader;
 import fm.synq.synquploader_example.SynqAPI.SynqAPI;
-import fm.synq.synquploader_example.SynqAPI.SynqResponseHandler;
 import fm.synq.synquploader_example.videos.Video;
 import fm.synq.synquploader_example.videos.VideoHandler;
 
@@ -60,11 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                 final Video video = (Video) parent.getItemAtPosition(position);
 
-                // Synq API:
-                // Step 1 - Create video object:
-                //apiCreateVideo(video);
-
-                //getUsers();
+                createVideo(video);
 
 
                 // - Get upload params, video/upload
@@ -107,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void createUser() {
-
-        httpClient.createUser(TEST_USER_NAME, TEST_USER_PASSWORD, new fm.synq.synqhttplib.SynqResponseHandler()
+        httpClient.createUser(TEST_USER_NAME, TEST_USER_PASSWORD, new SynqResponseHandler()
         {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
@@ -131,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getUsers() {
-
         httpClient.getUsers(new fm.synq.synqhttplib.SynqResponseHandler()
         {
             @Override
@@ -150,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-
-        httpClient.loginUser(TEST_USER_NAME, TEST_USER_PASSWORD, new fm.synq.synqhttplib.SynqResponseHandler()
+        httpClient.loginUser(TEST_USER_NAME, TEST_USER_PASSWORD, new SynqResponseHandler()
         {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
@@ -176,41 +169,39 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void logoutUser() {
-
-        httpClient.loginUser("testuser333", "testuserpassword333", new fm.synq.synqhttplib.SynqResponseHandler()
+        httpClient.logoutUser(new SynqResponseHandler()
         {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
 
-                Log.e("f", "user login response: " + jsonResponse);
+                Log.e("f", "user logout response: " + jsonResponse);
 
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.e("f", "userLogin onFailure");
+                Log.e("f", "userLogout onFailure");
 
             }
         }, MainActivity.this);
     }
 
-    private void apiCreateVideo(final Video aVideo) {
+    private void createVideo(final Video aVideo) {
 
-        synqAPI.video_create(new SynqResponseHandler()
+        httpClient.createVideo(new SynqResponseHandler()
         {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
 
+                Log.e("f", "video create response: " + jsonResponse);
+                //String vidId = jsonResponse.get("video_id").getAsString();
+                //Log.e("f", "video_id: " + vidId);
 
-                //Log.e("f", "video create response: " + jsonResponse);
-                String vidId = jsonResponse.get("video_id").getAsString();
-                Log.e("f", "video_id: " + vidId);
+                // TODO: Set upload parameters
+                //aVideo.setApiVideoId(vidId);
+                //
 
-                // Set videoID in video object
-                aVideo.setApiVideoId(vidId);
 
-                // Step 2 - get upload params:
-                apiGetUploadParameters(aVideo);
             }
 
             @Override
@@ -221,29 +212,6 @@ public class MainActivity extends AppCompatActivity {
         }, MainActivity.this);
     }
 
-
-    private void apiGetUploadParameters(final Video aVideo) {
-
-        synqAPI.video_upload(new SynqResponseHandler()
-        {
-            @Override
-            public void onSuccess(JsonObject jsonResponse) {
-
-                //Log.e("f", "video upload response: " + jsonResponse);
-
-                // Create a File from the video path
-                File videoFile = new File(aVideo.getVideoFilePath());
-
-                uploadVideoFile(videoFile, jsonResponse);
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                Log.e("f", "onFailure");
-
-            }
-        }, MainActivity.this, aVideo.getApiVideoId());
-    }
 
 
     private void uploadVideoFile(File videoFile, JsonObject jsonObject) {

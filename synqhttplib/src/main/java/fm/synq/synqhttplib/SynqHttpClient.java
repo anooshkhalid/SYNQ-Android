@@ -180,6 +180,7 @@ public class SynqHttpClient {
         // Build the request url containing the user id, like this:
         // "/users/9/videos/"
         String requestUrl = BASE_URL + "users/" + userID + "/videos/";
+        Log.e("f", "requestUrl: " + requestUrl);
 
         Ion.with(context)
                 .load("POST", requestUrl)
@@ -193,8 +194,8 @@ public class SynqHttpClient {
                         if(e != null){
                             handler.onFailure(e);
                         }
-                        else if(result.getHeaders().code() == 400){
-                            // a HTTP 400 was returned -- extract error
+                        else if(result.getHeaders().code() == 403){
+                            // a HTTP 403 was returned -- extract error
                             handler.onError(result.getResult().get("message").getAsString());
                         }
                         else {
