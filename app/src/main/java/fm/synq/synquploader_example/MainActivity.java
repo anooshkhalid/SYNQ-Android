@@ -20,6 +20,7 @@ import com.google.gson.JsonObject;
 import java.io.File;
 import java.util.ArrayList;
 
+import fm.synq.synqhttplib.SynqHttpClient;
 import fm.synq.synquploader.SynqUploadHandler;
 import fm.synq.synquploader.SynqUploader;
 import fm.synq.synquploader_example.SynqAPI.SynqAPI;
@@ -32,8 +33,12 @@ public class MainActivity extends AppCompatActivity {
     private GridViewAdapter gridAdapter;
     private ArrayList<Video> videos;
     static int MY_PERMISSIONS_REQUEST_READ_STORAGE = 1;
+    private static String TEST_USER_NAME = "testuser333";
+    private static String TEST_USER_PASSWORD = "testuserpassword333";
+
     SynqAPI synqAPI;
     SynqUploader synqUploader;
+    SynqHttpClient httpClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,22 +62,26 @@ public class MainActivity extends AppCompatActivity {
 
                 // Synq API:
                 // Step 1 - Create video object:
-                apiCreateVideo(video);
+                //apiCreateVideo(video);
+
+                //getUsers();
+
 
                 // - Get upload params, video/upload
 
                 // SynqUploader:
                 // - Upload video to AWS, using parameters returned from video/upload
 
-
-
             }
         });
 
-        // Init SynqAPI and synqUploader
+        // Init SynqAPI and synqUploader and synqHttpClient
         synqAPI = new SynqAPI();
         synqUploader = new SynqUploader();
+        httpClient = new SynqHttpClient();
 
+        // Start off user authentication by logging in the test user
+        loginUser();
 
         // Check permissions. If permissions not granted, request them and wait with accessing videos until request returns
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -94,10 +103,96 @@ public class MainActivity extends AppCompatActivity {
             // Refresh gridView
             gridAdapter.updateData(videos);
         }
-
-
     }
 
+
+    private void createUser() {
+
+        httpClient.createUser(TEST_USER_NAME, TEST_USER_PASSWORD, new fm.synq.synqhttplib.SynqResponseHandler()
+        {
+            @Override
+            public void onSuccess(JsonObject jsonResponse) {
+                Log.e("f", "user create response: " + jsonResponse);
+
+                // Login the user
+                loginUser();
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("f", "userCreate onFailure");
+            }
+
+            @Override
+            public void onError(String message) {
+                Log.e("f", "userCreate Error: " + message);
+            }
+        }, MainActivity.this);
+    }
+
+    private void getUsers() {
+
+        httpClient.getUsers(new fm.synq.synqhttplib.SynqResponseHandler()
+        {
+            @Override
+            public void onSuccess(JsonObject jsonResponse) {
+
+                Log.e("f", "user get response: " + jsonResponse);
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("f", "getUsers onFailure");
+
+            }
+        }, MainActivity.this);
+    }
+
+    private void loginUser() {
+
+        httpClient.loginUser(TEST_USER_NAME, TEST_USER_PASSWORD, new fm.synq.synqhttplib.SynqResponseHandler()
+        {
+            @Override
+            public void onSuccess(JsonObject jsonResponse) {
+
+                Log.e("f", "user login response: " + jsonResponse);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("f", "userLogin onFailure");
+            }
+            @Override
+            public void onError(String message) {
+                Log.e("f", "userCreate Error: " + message);
+
+                // If error logging in user, the test user might not have been created yet
+                // so we just create the user before attempting re-login
+                createUser();
+            }
+        }, MainActivity.this);
+    }
+
+
+    private void logoutUser() {
+
+        httpClient.loginUser("testuser333", "testuserpassword333", new fm.synq.synqhttplib.SynqResponseHandler()
+        {
+            @Override
+            public void onSuccess(JsonObject jsonResponse) {
+
+                Log.e("f", "user login response: " + jsonResponse);
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("f", "userLogin onFailure");
+
+            }
+        }, MainActivity.this);
+    }
 
     private void apiCreateVideo(final Video aVideo) {
 

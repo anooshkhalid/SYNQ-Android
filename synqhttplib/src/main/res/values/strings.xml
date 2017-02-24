@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SynqHttpLib</string>
+    <string name="user_id_key">UserIdKey</string>
 </resources>
