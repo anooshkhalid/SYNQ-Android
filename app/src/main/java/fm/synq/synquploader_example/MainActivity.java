@@ -24,7 +24,6 @@ import fm.synq.synqhttplib.SynqHttpClient;
 import fm.synq.synqhttplib.SynqResponseHandler;
 import fm.synq.synquploader.SynqUploadHandler;
 import fm.synq.synquploader.SynqUploader;
-import fm.synq.synquploader_example.SynqAPI.SynqAPI;
 import fm.synq.synquploader_example.videos.Video;
 import fm.synq.synquploader_example.videos.VideoHandler;
 
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private static String TEST_USER_NAME = "testuser333";
     private static String TEST_USER_PASSWORD = "testuserpassword333";
 
-    SynqAPI synqAPI;
     SynqUploader synqUploader;
     SynqHttpClient httpClient;
 
@@ -71,8 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Init SynqAPI and synqUploader and synqHttpClient
-        synqAPI = new SynqAPI();
+        // Init SynqUploader and synqHttpClient
         synqUploader = new SynqUploader();
         httpClient = new SynqHttpClient();
 
