@@ -194,14 +194,10 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(JsonObject jsonResponse) {
 
                 Log.e("f", "video create response: " + jsonResponse);
-                //String vidId = jsonResponse.get("video_id").getAsString();
-                //Log.e("f", "video_id: " + vidId);
 
-                // TODO: Set upload parameters
-                //aVideo.setApiVideoId(vidId);
-                //
-
-
+                // Use SynqUploader to upload the video
+                File videoFile = new File(aVideo.getVideoFilePath());
+                uploadVideoFile(videoFile, jsonResponse);
             }
 
             @Override
@@ -221,19 +217,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCompleted() {
                 // Upload success
-                //Log.e("f", "Upload success");
+                Log.e("f", "Upload success");
             }
 
             @Override
             public void onFailure(String error) {
                 // Handle error
-                //Log.e("f", "Upload error");
+                Log.e("f", "Upload error");
             }
 
             @Override
             public void onProgress(long bytesTransferred, long totalSize) {
                 double percent = (double)bytesTransferred / (double)totalSize * 100.0;
-                //Log.e("f", "Upload progress " + (int)percent + " %");
+                Log.e("f", "Upload progress " + (int)percent + " %");
                 // Report upload progress to UI
 
             }

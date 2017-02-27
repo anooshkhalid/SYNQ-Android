@@ -9,7 +9,6 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
 
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by Kjartan on 24.02.2017.
@@ -25,8 +24,11 @@ public class SynqHttpClient {
     }
 
     /**
-     *  Create a new user
-     *
+     * Create a new user
+     * @param userName      username of the user
+     * @param userPassword  password of the user
+     * @param handler       the handler for the http response
+     * @param context       the current activity´s context
      */
     public void createUser(
             String userName,
@@ -43,7 +45,7 @@ public class SynqHttpClient {
                 .setCallback(new FutureCallback<Response<JsonObject>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
-                        Log.e("f", "Res: " + result.getHeaders().message());
+                        //Log.e("f", "Res: " + result.getHeaders().message());
 
                         if(e != null){
                             handler.onFailure(e);
@@ -73,7 +75,11 @@ public class SynqHttpClient {
                 });
     }
 
-
+    /**
+     * Get all users
+     * @param handler   the handler for the http response
+     * @param context   the current activity´s context
+     */
     public void getUsers(
             final SynqResponseHandler handler,
             Context context
@@ -85,7 +91,7 @@ public class SynqHttpClient {
                 .setCallback(new FutureCallback<Response<JsonObject>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
-                        Log.e("f", "Res: " + result.getHeaders().message());
+                        //Log.e("f", "Res: " + result.getHeaders().message());
 
                         if(e != null){
                             handler.onFailure(e);
@@ -102,6 +108,13 @@ public class SynqHttpClient {
     }
 
 
+    /**
+     * Login the user with given username and password
+     * @param userName      username for the user
+     * @param userPassword  password for the user
+     * @param handler       the handler for the http response
+     * @param context       the current activity´s context
+     */
     public void loginUser(
             String userName,
             String userPassword,
@@ -117,7 +130,7 @@ public class SynqHttpClient {
                 .setCallback(new FutureCallback<Response<JsonObject>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
-                        Log.e("f", "Res: " + result.getHeaders().message());
+                        //Log.e("f", "Res: " + result.getHeaders().message());
 
                         if(e != null){
                             handler.onFailure(e);
@@ -133,7 +146,11 @@ public class SynqHttpClient {
                 });
     }
 
-
+    /**
+     * Logout the current user
+     * @param handler   the handler for the http response
+     * @param context   the current activity´s context
+     */
     public void logoutUser(
             final SynqResponseHandler handler,
             Context context
@@ -145,7 +162,7 @@ public class SynqHttpClient {
                 .setCallback(new FutureCallback<Response<JsonObject>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
-                        Log.e("f", "Res: " + result.getHeaders().message());
+                        //Log.e("f", "Res: " + result.getHeaders().message());
 
                         if(e != null){
                             handler.onFailure(e);
@@ -162,9 +179,11 @@ public class SynqHttpClient {
     }
 
     /**
-     *  Create a new video
+     *  Create a new video object and get the upload parameters
+     *  (returned as a JSON object)
      *
-     *  @param handler
+     * @param handler   the handler for the http response
+     * @param context   the current activity´s context
      */
     public void createVideo(
             final SynqResponseHandler handler,
@@ -189,7 +208,7 @@ public class SynqHttpClient {
                 .setCallback(new FutureCallback<Response<JsonObject>>() {
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
-                        Log.e("f", "Res: " + result.getHeaders().message());
+                        //Log.e("f", "Res: " + result.getHeaders().message());
 
                         if(e != null){
                             handler.onFailure(e);
