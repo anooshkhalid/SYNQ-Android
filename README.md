@@ -1,7 +1,7 @@
-# README #
+# SynqAndroid #
 
 
-SynqUploader is a simple Android library that enables upload of videos to the [SYNQ platform](https://www.synq.fm).
+This is the SYNQ mobile SDK for Android. It lets you easily integrate your mobile app with the SYNQ platform and the  [SYNQ Video API](https://www.synq.fm).
 
 The library uses [Ion](https://github.com/koush/ion) for communicating with the server. It features a callback handler (SynqUploadHandler) to report upload progress and completion.
 
@@ -18,7 +18,7 @@ For more info, please read the [projects and api keys](https://docs.synq.fm/#pro
 SynqUploader can be integrated into your project by adding the following dependency to your app's build.gradle: 
 
 ```java
-compile 'fm.synq:synquploader:0.0.3'
+compile 'fm.synq:SynqAndroid:0.1.0'
 ```
 
 ## Getting started
@@ -26,8 +26,8 @@ compile 'fm.synq:synquploader:0.0.3'
 ### Add the following imports where you would like to use the uploader
 
 ```java
-import fm.synq.synquploader.SynqUploader;
-import fm.synq.synquploader.SynqUploadHandler;
+import fm.synq.SynqAndroid.SynqUploader;
+import fm.synq.SynqAndroid.SynqUploadHandler;
 ```
 
 ### Create an instance of the uploader
