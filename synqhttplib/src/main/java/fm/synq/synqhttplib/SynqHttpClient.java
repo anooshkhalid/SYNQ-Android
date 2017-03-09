@@ -15,7 +15,7 @@ import com.koushikdutta.ion.Response;
  */
 
 public class SynqHttpClient {
-    private static final String BASE_URL = "http://192.168.1.100:8080/";
+    private static final String BASE_URL = "http://10.0.1.31:8080/";
     private static final String PREFERENCES_KEY = "fm.synq.synqhttplib.PREFERENCES_FILE_KEY";
     private String currentUserID;
 
@@ -55,20 +55,6 @@ public class SynqHttpClient {
                             handler.onError(result.getResult().get("message").getAsString());
                         }
                         else {
-
-                            // Get userID
-                            if (result.getResult().get("user") != null) {
-                                currentUserID = result.getResult().get("user").getAsString();
-
-                                // Store userID to be available when logging in user next time
-                                storeUserIdInPreferences(context);
-                            }
-                            else {
-                                Log.e("f", "No UserID returned");
-                                handler.onError("Error: No userID returned");
-                                return;
-                            }
-
                             handler.onSuccess(result.getResult());
                         }
                     }
@@ -119,7 +105,7 @@ public class SynqHttpClient {
             String userName,
             String userPassword,
             final SynqResponseHandler handler,
-            Context context
+            final Context context
     ) {
         Ion.with(context)
                 .load("POST", BASE_URL + "login/")
@@ -140,6 +126,17 @@ public class SynqHttpClient {
                             handler.onError("Unauthorized");
                         }
                         else {
+                            // Get userID
+                            if (result.getResult().get("user") != null) {
+                                // Store userID to be available when calling the createVideo function
+                                currentUserID = result.getResult().get("user").getAsString();
+                                storeUserIdInPreferences(context);
+                            }
+                            else {
+                                Log.e("f", "No UserID returned");
+                                handler.onError("Error: No userID returned");
+                                return;
+                            }
                             handler.onSuccess(result.getResult());
                         }
                     }

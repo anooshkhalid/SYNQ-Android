@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
-                Log.e("f", "user create response: " + jsonResponse);
+                Log.e("f", "user create ok: " + jsonResponse);
 
                 // Login the user
                 loginUser();
@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Exception e) {
                 Log.e("f", "getUsers onFailure");
-
             }
         }, MainActivity.this);
     }
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JsonObject jsonResponse) {
 
-                Log.e("f", "user login response: " + jsonResponse);
+                Log.e("f", "user login ok: " + jsonResponse);
             }
 
             @Override
@@ -155,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onError(String message) {
-                Log.e("f", "userCreate Error: " + message);
+                Log.e("f", "userLogin Error: " + message);
 
                 // If error logging in user, the test user might not have been created yet
                 // so we just create the user before attempting re-login
