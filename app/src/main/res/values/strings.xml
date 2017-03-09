@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SynqUploader</string>
+    <string name="app_name">SynqAndroid</string>
 
     <string name="storage_permission_rationale">You should give access to files to let the app display your videos</string>
 
