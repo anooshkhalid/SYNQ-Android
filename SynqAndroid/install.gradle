@@ -8,11 +8,11 @@ install {
             project {
                 packaging 'aar'
                 groupId 'fm.synq' // CREATE A GROUP ID FOR YOUR LIBRARY
-                artifactId 'synquploader' // THE NAME OF YOUR MODULE
+                artifactId 'SynqAndroid' // THE NAME OF YOUR MODULE
 
-                name 'synquploader' // YOUR LIBRARY NAME
-                description 'A library for uploading video files to the Synq platform' // YOUR LIBRARY DESCRIPTION
-                url 'https://github.com/SYNQfm/synquploader-android' // YOUR SITE
+                name 'SynqAndroid' // YOUR LIBRARY NAME
+                description 'An SDK for integrating SYNQ functionality to your Android app' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/SYNQfm/SYNQ-Android' // YOUR SITE
 
                 licenses {
                     license {
@@ -28,9 +28,9 @@ install {
                     }
                 }
                 scm {
-                    connection 'https://github.com/SYNQfm/synquploader-android.git' // YOUR GIT REPO
-                    developerConnection 'https://github.com/SYNQfm/synquploader-android.git' // YOUR GIT REPO
-                    url 'https://github.com/SYNQfm/synquploader-android' // YOUR SITE
+                    connection 'https://github.com/SYNQfm/SYNQ-Android.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/SYNQfm/SYNQ-Android.git' // YOUR GIT REPO
+                    url 'https://github.com/SYNQfm/SYNQ-Android' // YOUR SITE
                 }
             }
         }
