@@ -1,0 +1,38 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'fm.synq' // CREATE A GROUP ID FOR YOUR LIBRARY
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'fm.synq' // CREATE A GROUP ID FOR YOUR LIBRARY
+                artifactId 'synqhttplib' // THE NAME OF YOUR MODULE
+
+                name 'synqhttplib' // YOUR LIBRARY NAME
+                description 'A library for interacting with the example Node server' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/SYNQfm/SYNQ-Android' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'kjartan' //YOUR ID
+                        name 'Kjartan Vestvik' //YOUR NAME
+                        email 'kjartan@synq.fm' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection 'https://github.com/SYNQfm/SYNQ-Android.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/SYNQfm/SYNQ-Android.git' // YOUR GIT REPO
+                    url 'https://github.com/SYNQfm/SYNQ-Android' // YOUR SITE
+                }
+            }
+        }
+    }
+}

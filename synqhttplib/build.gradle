@@ -29,5 +29,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.koushikdutta.ion:ion:2.1.8'
     testCompile 'junit:junit:4.12'
-    compile 'com.google.code.gson:gson:2.4'
 }
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
