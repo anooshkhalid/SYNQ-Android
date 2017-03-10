@@ -5,8 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/SYNQ-Android.iml" filepath="$PROJECT_DIR$/SYNQ-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/SynqAndroid/SynqAndroid.iml" filepath="$PROJECT_DIR$/SynqAndroid/SynqAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/synqhttplib/synqhttplib.iml" filepath="$PROJECT_DIR$/synqhttplib/synqhttplib.iml" />
       <module fileurl="file://$PROJECT_DIR$/synqhttplib/synqhttplib.iml" filepath="$PROJECT_DIR$/synqhttplib/synqhttplib.iml" />
       <module fileurl="file://$PROJECT_DIR$/synquploader/synquploader.iml" filepath="$PROJECT_DIR$/synquploader/synquploader.iml" />
       <module fileurl="file://$PROJECT_DIR$/synquploader-android.iml" filepath="$PROJECT_DIR$/synquploader-android.iml" />

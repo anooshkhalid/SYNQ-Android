@@ -15,7 +15,7 @@ import com.koushikdutta.ion.Response;
  */
 
 public class SynqHttpClient {
-    private static final String BASE_URL = "http://10.0.1.31:8080/";
+    private static final String BASE_URL = "http://localhost:8080/";
     private static final String PREFERENCES_KEY = "fm.synq.synqhttplib.PREFERENCES_FILE_KEY";
     private String currentUserID;
 
